@@ -1,0 +1,19 @@
+[phases.setup]
+nixPkgs = ['nodejs', 'nginx']
+
+[phases.install]
+cmds = ['npm install']
+
+[phases.build]
+cmds = ['npm run build']
+
+[start]
+cmd = 'nginx -g "daemon off;"'
+
+[nginx]
+root = '/app/build'
+locations = { "/" = "try_files $uri $uri/ /index.html;" }
+
+[env]
+PORT = "80"
+NODE_ENV = "production" 
