@@ -8,8 +8,8 @@ COPY package*.json ./
 COPY .npmrc ./
 
 # Install dependencies
-RUN npm config set registry https://registry.npmjs.org/ && \
-    npm install --legacy-peer-deps --network-timeout=100000
+RUN npm config set network-timeout 600000 && \
+    npm install
 
 # Copy source files
 COPY . .
@@ -22,13 +22,13 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy built files
-COPY --from=builder /app/build /usr/share/nginx/html/scan
+COPY --from=builder /app/dist/scan /usr/share/nginx/html/scan
 
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port
-EXPOSE 3005
+EXPOSE 80
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"] 
