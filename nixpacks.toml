@@ -1,5 +1,6 @@
 [phases.setup]
 nixPkgs = ['nodejs', 'nginx']
+cmds = ['mkdir -p /app/build']
 
 [phases.install]
 cmds = ['npm install']
