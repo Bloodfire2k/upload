@@ -8,7 +8,7 @@ COPY package*.json ./
 COPY .npmrc ./
 
 # Install dependencies
-RUN npm config set network-timeout 600000 && \
+RUN npm config set network-timeout-ms 600000 && \
     npm install
 
 # Copy source files
