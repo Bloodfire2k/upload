@@ -18,13 +18,19 @@ ENV CI=false
 RUN npm run build
 
 # Production stage
-FROM nginx:alpine
+FROM nginx:alpine AS production
+
+# Create directory structure
+RUN mkdir -p /usr/share/nginx/html/scan
 
 # Copy built files
 COPY --from=builder /app/build/ /usr/share/nginx/html/scan/
 
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Verify the file structure
+RUN ls -la /usr/share/nginx/html/scan/
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"] 
