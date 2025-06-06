@@ -21,7 +21,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy built files
-COPY --from=builder /app/dist/scan /usr/share/nginx/html/scan
+COPY --from=builder /app/build /usr/share/nginx/html/scan
 
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
