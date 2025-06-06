@@ -7,10 +7,9 @@ WORKDIR /app
 COPY package*.json ./
 COPY .npmrc ./
 
-# Install dependencies with specific npm config
+# Install dependencies
 RUN npm config set registry https://registry.npmjs.org/ && \
-    npm config set network-timeout 100000 && \
-    npm install --legacy-peer-deps
+    npm install --legacy-peer-deps --network-timeout=100000
 
 # Copy source files
 COPY . .
