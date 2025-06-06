@@ -26,5 +26,9 @@ COPY --from=builder /app/build/ /usr/share/nginx/html/scan/
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# Add Traefik labels
+LABEL traefik.enable=true
+LABEL traefik.http.services.scan.loadbalancer.server.port=3005
+
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"] 
