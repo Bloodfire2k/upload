@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Container, CssBaseline, Box, Paper } from '@mui/material';
-import { BusinessCard } from './components/BusinessCard';
+import React from 'react';
+import { ThemeProvider, createTheme } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import { BusinessCardScanner } from './components/BusinessCardScanner';
 
 const theme = createTheme({
   palette: {
@@ -16,29 +16,10 @@ const theme = createTheme({
 });
 
 function App() {
-  const [processedImage, setProcessedImage] = useState<string | null>(null);
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="md">
-        <Box sx={{ my: 4 }}>
-          <Paper 
-            elevation={3} 
-            sx={{ 
-              p: 3,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <BusinessCard 
-              processedImage={processedImage}
-              setProcessedImage={setProcessedImage}
-            />
-          </Paper>
-        </Box>
-      </Container>
+      <BusinessCardScanner />
     </ThemeProvider>
   );
 }

@@ -1,0 +1,15 @@
+{
+  "build": {
+    "dockerfile": false,
+    "docker-compose": false,
+    "buildPack": {
+      "enable": true,
+      "builder": "nixpacks"
+    }
+  },
+  "deploy": {
+    "startCommand": "",
+    "healthCheckPath": "/scan/",
+    "port": 80
+  }
+} 
