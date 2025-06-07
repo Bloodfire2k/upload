@@ -37,7 +37,7 @@ PAPERLESS_TOKEN=ihr-paperless-token
 npm start
 ```
 
-Die Anwendung ist dann verfügbar unter: http://localhost:3000
+Die Anwendung ist dann verfügbar unter: http://localhost:3005
 
 ## Unterstützte Dateiformate
 
@@ -80,28 +80,21 @@ http://localhost:3005/scan/
 
 ### Deployment auf Coolify
 
-1. Pushen Sie das Repository auf GitHub
-2. In Coolify:
-   - Wählen Sie "Create New Service" -> "Application"
-   - Verbinden Sie Ihr GitHub Repository
-   - Wählen Sie den Branch für das Deployment
-   - Build-Konfiguration:
-     - Build Command: `npm run build`
-     - Start Command: Leer lassen (wird durch Dockerfile gesteuert)
-     - Port: 3005
-   - Deployment starten
+Das Projekt ist für Coolify-Deployment über GitHub optimiert:
 
-## Technische Details
+1. Repository auf GitHub pushen
+2. In Coolify: "Private Repository (GitHub App)" wählen
+3. Repository auswählen
+4. Build Pack: "Nixpacks" (Standard)
+5. Port: 3005 (wird automatisch erkannt)
+6. Deploy starten
 
-- Die Anwendung läuft unter dem Pfad `/scan/`
-- Der Server läuft auf Port 3005
-- nginx wird als Webserver verwendet
-- Alle statischen Assets werden für 7 Tage gecached
-- CORS ist für alle Ursprünge aktiviert
+### Umgebungsvariablen in Coolify
 
-## Umgebungsvariablen
+Setzen Sie folgende Umgebungsvariablen in Coolify:
 
-Keine speziellen Umgebungsvariablen erforderlich.
+- `PAPERLESS_URL` - URL Ihrer Paperless-ngx Instanz
+- `PAPERLESS_TOKEN` - API-Token für Paperless-ngx
 
 ## Learn More
 

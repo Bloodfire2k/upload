@@ -1,13 +1,6 @@
-[phases.setup]
-nixPkgs = ['nodejs']
-
-[phases.install]
-cmds = ['npm install']
-
 [start]
 cmd = 'node server.js'
 
 [env]
 PORT = "3005"
-NODE_ENV = "production"
-HOST = "0.0.0.0" 
+NODE_ENV = "production" 
