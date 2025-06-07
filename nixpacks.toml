@@ -8,6 +8,6 @@ cmds = ['npm install']
 cmd = 'node server.js'
 
 [env]
-PORT = "3000"
+PORT = "3005"
 NODE_ENV = "production"
 HOST = "0.0.0.0" 

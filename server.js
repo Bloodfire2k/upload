@@ -239,7 +239,7 @@ app.post('/api/upload', upload.single('document'), async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3005;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
     console.log('Environment:', {
