@@ -1,36 +1,29 @@
-# Build stage
-FROM node:18-alpine AS builder
+FROM node:20-slim
 
 WORKDIR /app
 
+# Install system dependencies for Sharp
+RUN apt-get update && apt-get install -y \
+    libvips-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy package files
 COPY package*.json ./
-COPY .npmrc ./
 
 # Install dependencies
-RUN npm install --network-timeout=600000
+RUN npm install
 
-# Copy source files
+# Copy application files
 COPY . .
 
-# Build the app
-ENV CI=false
-RUN npm run build
+# Create uploads directory
+RUN mkdir -p uploads && chown -R node:node uploads
 
-# Production stage
-FROM nginx:alpine AS production
+# Switch to non-root user
+USER node
 
-# Create directory structure
-RUN mkdir -p /usr/share/nginx/html/scan
+# Expose port
+EXPOSE 3000
 
-# Copy built files
-COPY --from=builder /app/build/ /usr/share/nginx/html/scan/
-
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Verify the file structure
-RUN ls -la /usr/share/nginx/html/scan/
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"] 
+# Start the application
+CMD ["node", "server.js"] 

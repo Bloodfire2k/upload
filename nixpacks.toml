@@ -8,7 +8,7 @@ cmds = ['npm install']
 cmds = ['npm run build']
 
 [start]
-cmd = 'nginx -g "daemon off;"'
+cmd = 'node server.js'
 
 [nginx]
 root = '/app/build'
