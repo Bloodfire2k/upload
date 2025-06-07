@@ -1,6 +1,15 @@
-[start]
-cmd = 'node server.js'
+[phases.setup]
+nixPkgs = ['nodejs_18', 'npm']
 
-[env]
-PORT = "3005"
-NODE_ENV = "production" 
+[phases.install] 
+cmds = ['npm ci']
+
+[phases.build]
+cmds = ['npm run build']
+
+[start]
+cmd = 'npm start'
+
+[variables]
+PORT = '3005'
+NODE_ENV = 'production' 
