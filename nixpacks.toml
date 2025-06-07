@@ -1,21 +1,13 @@
 [phases.setup]
-nixPkgs = ['nodejs', 'nginx']
+nixPkgs = ['nodejs']
 
 [phases.install]
 cmds = ['npm install']
 
-[phases.build]
-cmds = ['npm run build']
-
 [start]
 cmd = 'node server.js'
 
-[nginx]
-root = '/app/build'
-locations = { "/scan/" = "try_files $uri $uri/ /scan/index.html;" }
-port = "80"
-
 [env]
-PORT = "80"
+PORT = "3000"
 NODE_ENV = "production"
 HOST = "0.0.0.0" 
