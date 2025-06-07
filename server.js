@@ -35,6 +35,19 @@ const upload = multer({
 // Serve static files
 app.use(express.static(path.join(__dirname)));
 
+// Routes
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/scan', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/scan/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Convert image to PDF
 async function convertImageToPdf(imagePath, originalName) {
     console.log('Starting image conversion for:', originalName);
